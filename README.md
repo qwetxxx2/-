@@ -6,15 +6,15 @@
     pip install pygame
 # Сохраните код игры в файл roguelike_game.py
 # Подготовьте изображения в той же папке:
-heart.png - полное сердце
-half_heart.png - половинка сердца
-floor.png - текстура пола
-door.png - изображение двери
-coin.png - монетка
-bullet.png - снаряд
-player.png - игрок
-enemy.png - обычный враг
-boss.png - босс
+ heart.png - полное сердце
+ half_heart.png - половинка сердца
+ floor.png - текстура пола
+ door.png - изображение двери
+ coin.png - монетка
+ bullet.png - снаряд
+ player.png - игрок
+ enemy.png - обычный враг
+ boss.png - босс
 
 # Запустите игру:
 # python roguelike_game.py
