@@ -484,10 +484,10 @@ def run_shop():
         screen.fill(BLACK)
         texts = [
             f"Shop - Coins: {player.coins}",
-            f"1: Multishot (Level {player_upgrades.multishot_level + 1}) - {5 + 5 * player_upgrades.multishot_level} coins",
-            "2: Homing Bullets - 30 coins" + (" [PURCHASED]" if player_upgrades.has_homing else ""),
-            "3: Health Upgrade (+0.5 heart) - 10 coins",
-            "Enter: Exit Shop"
+            f"1: Мульти выстрел (Level {player_upgrades.multishot_level + 1}) - {5 + 5 * player_upgrades.multishot_level} coins",
+            "2: Самонаводящийся пули - 30 coins" + (" [PURCHASED]" if player_upgrades.has_homing else ""),
+            "3: Улучшение здоровья (+0.5 heart) - 10 coins",
+            "Enter: Выйти с магазина"
         ]
 
         for i, t in enumerate(texts):
@@ -525,19 +525,19 @@ def draw_health():
 
     # Отображение монет
     font = pygame.font.SysFont(None, 24)
-    coins_text = font.render(f"Coins: {player.coins}", True, WHITE)
+    coins_text = font.render(f"монеты: {player.coins}", True, WHITE)
     screen.blit(coins_text, (SCREEN_WIDTH - 150, 5))
     if coin_img:
         screen.blit(coin_img, (SCREEN_WIDTH - 180, 5))
 
     # Отображение уровня мультивыстрела
     if player.multishot_level > 0:
-        multishot_text = font.render(f"Multishot: Lvl {player.multishot_level}", True, WHITE)
+        multishot_text = font.render(f"мульти выстрел: Lvl {player.multishot_level}", True, WHITE)
         screen.blit(multishot_text, (SCREEN_WIDTH // 2 - 70, 5))
 
     # Отображение самонаводящихся пуль
     if player.has_homing:
-        homing_text = font.render("Homing: ON", True, WHITE)
+        homing_text = font.render("самонаводящийся пули: ON", True, WHITE)
         screen.blit(homing_text, (SCREEN_WIDTH // 2 - 70, 30))
 
 
@@ -558,6 +558,12 @@ def show_game_over():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if restart_button.collidepoint(event.pos):
+                    # Очищаем все группы спрайтов перед рестартом
+                    all_sprites.empty()
+                    enemies.empty()
+                    bullets.empty()
+                    walls.empty()
+                    coins.empty()
                     return "restart"
                 elif quit_button.collidepoint(event.pos):
                     pygame.quit()
@@ -588,7 +594,6 @@ def show_game_over():
 
         pygame.display.flip()
         clock.tick(FPS)
-
 
 # Главный цикл игры
 def main():
@@ -715,6 +720,7 @@ def main():
             bullets.empty()
             walls.empty()
             coins.empty()
+
 
     pygame.quit()
 
